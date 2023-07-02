@@ -21,7 +21,7 @@ void PhoneBook::add()
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nickname);
 	std::cout << "Phone number: ";
-	std::getline(std::cin, nickname);
+	std::getline(std::cin, phoneNumber);
 	std::cout << "Darkest secret: ";
 	std::getline(std::cin, darkestSecret);
 	contacts[nextContactIndex].setFirstName(firstName);
