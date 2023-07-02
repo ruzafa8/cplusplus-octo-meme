@@ -59,6 +59,11 @@ void PhoneBook::search()
 	std::cout << "Indice: ";
 	std::getline(std::cin, strIndex);
 	// Verify if strIndex is a number
+	if (strIndex.length() == 0)
+	{
+		std::cout << "It's not a number" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < (int) strIndex.length(); i++)
 	{
 		if (!std::isdigit(strIndex[i]))
