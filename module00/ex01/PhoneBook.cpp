@@ -63,7 +63,7 @@ void PhoneBook::search()
 	index = std::atoi(strIndex.c_str());
 	std::cout << "index: " << index << std::endl;
 	std::cout << index << std::endl;
-	if (index < 0 || index > 7)
+	if (index < 0 || index > 7 || index >= numContacts)
 	{
 		std::cout << "Invalid index" << std::endl;
 		return ;
