@@ -15,15 +15,15 @@ void PhoneBook::add()
 	std::string	darkestSecret;
 
 	std::cout << "First name: ";
-	std::cin >> firstName;
+	std::getline(std::cin, firstName);
 	std::cout << "Last name: ";
-	std::cin >> lastName;
+	std::getline(std::cin, lastName);
 	std::cout << "Nickname: ";
-	std::cin >> nickname;
+	std::getline(std::cin, nickname);
 	std::cout << "Phone number: ";
-	std::cin >> phoneNumber;
+	std::getline(std::cin, nickname);
 	std::cout << "Darkest secret: ";
-	std::cin >> darkestSecret;
+	std::getline(std::cin, darkestSecret);
 	contacts[nextContactIndex].setFirstName(firstName);
 	contacts[nextContactIndex].setLastName(lastName);
 	contacts[nextContactIndex].setNickname(nickname);
@@ -39,6 +39,7 @@ void PhoneBook::add()
 void PhoneBook::search()
 {
 	int			index;
+	std::string	strIndex;
 
 	std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
 	for (int i = 0; i < numContacts; i++)
@@ -49,7 +50,18 @@ void PhoneBook::search()
 		std::cout << std::setw(10) << contacts[i].getNickname() << std::endl;
 	}
 	std::cout << "Indice: ";
-	std::cin >> index;
+	std::getline(std::cin, strIndex);
+	// Verify if strIndex is a number
+	for (int i = 0; i < (int) strIndex.length(); i++)
+	{
+		if (!std::isdigit(strIndex[i]))
+		{
+			std::cout << "It's not a number" << std::endl;
+			return ;
+		}
+	}
+	index = std::atoi(strIndex.c_str());
+	std::cout << "index: " << index << std::endl;
 	std::cout << index << std::endl;
 	if (index < 0 || index > 7)
 	{

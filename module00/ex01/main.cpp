@@ -10,7 +10,7 @@ int	main()
 
 	while (true)
 	{
-		std::cin >> command;
+		std::getline(std::cin, command);
 		if (command == "ADD")
 			phone_book.add();
 		else if (command == "SEARCH")
