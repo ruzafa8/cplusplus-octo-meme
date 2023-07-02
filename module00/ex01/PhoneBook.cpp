@@ -36,6 +36,13 @@ void PhoneBook::add()
 		numContacts++;
 }
 
+static std::string truncate(std::string str)
+{
+    if (str.length() > 10)
+        return str.substr(0, 9) + ".";
+    return str;
+}
+
 void PhoneBook::search()
 {
 	int			index;
@@ -44,10 +51,10 @@ void PhoneBook::search()
 	std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
 	for (int i = 0; i < numContacts; i++)
 	{
-		std::cout << std::setw(10) << i << "|";
-		std::cout << std::setw(10) << contacts[i].getFirstName() << "|";
-		std::cout << std::setw(10) << contacts[i].getLastName() << "|";
-		std::cout << std::setw(10) << contacts[i].getNickname() << std::endl;
+		std::cout << std::setw(10) << i << "|"
+			<< std::setw(10) << truncate(contacts[i].getFirstName()) << "|"
+			<< std::setw(10) << truncate(contacts[i].getLastName()) << "|"
+			<< std::setw(10) << truncate(contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << "Indice: ";
 	std::getline(std::cin, strIndex);
