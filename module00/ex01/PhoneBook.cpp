@@ -77,5 +77,5 @@ void PhoneBook::search()
 
 void PhoneBook::exit()
 {
-	(void) this->nextContactIndex;
+	std::exit(0);
 }
