@@ -64,6 +64,12 @@ void PhoneBook::search()
 		std::cout << "It's not a number" << std::endl;
 		return ;
 	}
+	index = std::atoi(strIndex.c_str());
+	if (index < 0 || index > 7 || index >= numContacts)
+	{
+		std::cout << "Invalid index" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < (int) strIndex.length(); i++)
 	{
 		if (!std::isdigit(strIndex[i]))
@@ -72,13 +78,7 @@ void PhoneBook::search()
 			return ;
 		}
 	}
-	index = std::atoi(strIndex.c_str());
 	std::cout << "index: " << index << std::endl;
-	if (index < 0 || index > 7 || index >= numContacts)
-	{
-		std::cout << "Invalid index" << std::endl;
-		return ;
-	}
 	std::cout << "First name: " << contacts[index].getFirstName() << std::endl;
 	std::cout << "Last name: " << contacts[index].getLastName() << std::endl;
 	std::cout << "Nickname: " << contacts[index].getNickname() << std::endl;

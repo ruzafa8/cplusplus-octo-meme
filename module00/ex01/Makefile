@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 RM = rm -f
-NAME = main
+NAME = phonebook
 SRCS = Contact.cpp PhoneBook.cpp main.cpp
 
 all: ${NAME}
