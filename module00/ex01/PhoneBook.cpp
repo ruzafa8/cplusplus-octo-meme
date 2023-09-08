@@ -14,16 +14,31 @@ void PhoneBook::add()
 	std::string	phoneNumber;
 	std::string	darkestSecret;
 
-	std::cout << "First name: ";
-	std::getline(std::cin, firstName);
-	std::cout << "Last name: ";
-	std::getline(std::cin, lastName);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, nickname);
-	std::cout << "Phone number: ";
-	std::getline(std::cin, phoneNumber);
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, darkestSecret);
+	do {
+		std::cout << "First name: ";
+		std::getline(std::cin, firstName);
+	} while (firstName.length() == 0);
+
+	do {
+		std::cout << "Last name: ";
+		std::getline(std::cin, lastName);
+	} while (lastName.length() == 0);
+
+	do {
+		std::cout << "Nickname: ";
+		std::getline(std::cin, nickname);
+	} while (nickname.length() == 0);
+
+	do {
+		std::cout << "Phone number: ";
+		std::getline(std::cin, phoneNumber);
+	} while (phoneNumber.length() == 0);
+
+	do {
+		std::cout << "Darkest secret: ";
+		std::getline(std::cin, darkestSecret);
+	} while (darkestSecret.length() == 0);
+
 	contacts[nextContactIndex].setFirstName(firstName);
 	contacts[nextContactIndex].setLastName(lastName);
 	contacts[nextContactIndex].setNickname(nickname);
