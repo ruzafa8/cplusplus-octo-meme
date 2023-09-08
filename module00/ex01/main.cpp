@@ -10,7 +10,11 @@ int	main()
 
 	while (true)
 	{
+		std::cout << "Insert a command (ADD/SEARCH/EXIT): ";
 		std::getline(std::cin, command);
+
+		for(int i = 0; i < (int) command.length(); i++)
+			command[i] = (char) toupper(command[i]);
 		if (command == "ADD")
 			phone_book.add();
 		else if (command == "SEARCH")
