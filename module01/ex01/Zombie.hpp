@@ -4,8 +4,6 @@
 # include <iostream>
 # include <string>
 
-Zombie  *zombieHorde(int N, std::string name);
-
 class Zombie {
     public:
         Zombie(void);
@@ -17,6 +15,8 @@ class Zombie {
 
     private:
         std::string name;
-}
+};
+
+Zombie  *zombieHorde(int N, std::string name);
 
 #endif
