@@ -15,18 +15,32 @@ bool    validateArgs(int argc, char *argv[]) {
     return true;
 }
 
-int main(void) {
+int main(int argc, char **argv) {
     if (!validateArgs(argc, argv)) 
         return 1;
 
     Harl harl;
     std::string level = argv[1];
+	std::string complaint[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int complaintIndex = -1;
 
-    switch (level) {
-        case "DEBUG":   harl.debug();
-        case "INFO":    harl.info();
-        case "WARNING": harl.warning();
-        case "ERROR":   harl.error();
+    for (int i = 0; i < 4; i++) {
+        if (level == complaint[i]) {
+            complaintIndex = i;
+			break;
+        }
     }
-    return 0;
+	switch (complaintIndex)
+	{
+	case 0:
+		harl.complain("DEBUG");
+	case 1:
+		harl.complain("INFO");
+	case 2:
+		harl.complain("WARNING");
+	case 3:
+		harl.complain("ERROR");
+		break;
+	}
+	return 0;
 }

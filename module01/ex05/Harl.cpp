@@ -6,7 +6,7 @@ Harl::~Harl(void) {}
 
 void Harl::complain(std::string level) {
     void (Harl::*complaintPtr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    std::string complaint[4] = {"debug", "info", "warning", "error"};
+    std::string complaint[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
     for (int i = 0; i < 4; i++) {
         if (level == complaint[i]) {
