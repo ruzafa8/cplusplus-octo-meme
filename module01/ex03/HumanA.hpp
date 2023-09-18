@@ -1,6 +1,7 @@
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#ifndef HUMANA_H
+# define HUMANA_H
 
+# include <iostream>
 # include "Weapon.hpp"
 
 class HumanA {
@@ -11,6 +12,6 @@ class HumanA {
         HumanA(std::string name, Weapon &weapon);
         ~HumanA();
         void attack();
-}
+};
 
 #endif

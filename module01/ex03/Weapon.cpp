@@ -1,10 +1,11 @@
 #ifndef WEAPON_CPP
 # define WEAPON_CPP
 
-# include <iostream>
-# include <string>
+# include "Weapon.hpp"
 
-Weapon::Weapon() {}
+Weapon::Weapon(void) {}
+
+Weapon::Weapon(std::string type): type(type) {}
 
 Weapon::~Weapon(void) {}
 

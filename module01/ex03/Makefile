@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 RM = rm -f
 NAME = zombie
-SRCS = main.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 all: ${NAME}
 

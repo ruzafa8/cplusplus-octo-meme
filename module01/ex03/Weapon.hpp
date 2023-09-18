@@ -1,9 +1,13 @@
-#include "Weapon.hpp"
+#ifndef WEAPON_H
+# define WEAPON_H
+
+# include <string>
 
 class Weapon {
 
     public:
-        Weapon();
+        Weapon(void);
+		Weapon(std::string type);
         ~Weapon(void);
 
         std::string getType(void) const;
@@ -11,4 +15,6 @@ class Weapon {
 
     private:
         std::string type;
-}
+};
+
+#endif
