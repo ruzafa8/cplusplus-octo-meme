@@ -2,8 +2,8 @@ CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 RM = rm -f
-NAME = zombie
-SRCS = main.cpp
+NAME = harl
+SRCS = main.cpp Harl.cpp
 
 all: ${NAME}
 
