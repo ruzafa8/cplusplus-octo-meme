@@ -9,7 +9,7 @@ Fixed::Fixed(Fixed const &src) {
     *this = src;
 }
 
-Fixed::Fixed(int const integer): {
+Fixed::Fixed(int const integer) {
     std::cout << "Int constructor called" << std::endl;
     this->integer = integer << this->fractionalBits;
 }
@@ -30,7 +30,7 @@ Fixed &Fixed::operator=(Fixed const &rhs) {
     return *this;
 }
 
-ostream &operator<<(ostream &o, Fixed const &rhs) {
+std::ostream &operator<<(std::ostream &o, Fixed const &rhs) {
     o << rhs.toFloat();
     return o;
 }
