@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <cmath>
 
 class Fixed {
     public:
@@ -13,7 +14,6 @@ class Fixed {
         ~Fixed(void);
 
         Fixed &operator=(Fixed const &rhs);
-        std::ostream &operator<<(std::ostream &o);
 
         bool operator>(Fixed const &rhs);
         bool operator<(Fixed const &rhs);
@@ -45,5 +45,7 @@ class Fixed {
         int integer;
         static const int fractionalBits = 8;
 };
+
+std::ostream &operator<<(std::ostream &o, Fixed const &rhs);
 
 #endif
