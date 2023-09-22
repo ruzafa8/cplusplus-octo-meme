@@ -53,27 +53,27 @@ void Fixed::setRawBits(int const raw) {
     this->integer = raw;
 }
 
-bool Fixed::operator>(Fixed const &rhs) {
+bool Fixed::operator>(Fixed const &rhs) const {
     return this->toFloat() > rhs.toFloat();
 }
 
-bool Fixed::operator<(Fixed const &rhs) {
+bool Fixed::operator<(Fixed const &rhs) const {
     return this->toFloat() < rhs.toFloat();
 }
 
-bool Fixed::operator>=(Fixed const &rhs) {
+bool Fixed::operator>=(Fixed const &rhs) const {
     return this->toFloat() >= rhs.toFloat();
 }
 
-bool Fixed::operator<=(Fixed const &rhs) {
+bool Fixed::operator<=(Fixed const &rhs) const {
     return this->toFloat() <= rhs.toFloat();
 }
 
-bool Fixed::operator==(Fixed const &rhs) {
+bool Fixed::operator==(Fixed const &rhs) const {
     return this->toFloat() == rhs.toFloat();
 }
 
-bool Fixed::operator!=(Fixed const &rhs) {
+bool Fixed::operator!=(Fixed const &rhs) const {
     return this->toFloat() != rhs.toFloat();
 }
 
@@ -119,6 +119,14 @@ Fixed &Fixed::min(Fixed &a, Fixed &b) {
     return a < b ? a : b;
 }
 
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
+    return a < b ? a : b;
+}
+
 Fixed &Fixed::max(Fixed &a, Fixed &b) {
+    return a > b ? a : b;
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b) {
     return a > b ? a : b;
 }
