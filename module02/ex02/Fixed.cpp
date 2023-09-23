@@ -77,19 +77,19 @@ bool Fixed::operator!=(Fixed const &rhs) const {
     return this->toFloat() != rhs.toFloat();
 }
 
-Fixed Fixed::operator+(Fixed const &rhs) {
+Fixed Fixed::operator+(Fixed const &rhs) const {
     return Fixed(this->toFloat() + rhs.toFloat());
 }
 
-Fixed Fixed::operator-(Fixed const &rhs) {
+Fixed Fixed::operator-(Fixed const &rhs) const {
     return Fixed(this->toFloat() - rhs.toFloat());
 }
 
-Fixed Fixed::operator*(Fixed const &rhs) {
+Fixed Fixed::operator*(Fixed const &rhs) const {
     return Fixed(this->toFloat() * rhs.toFloat());
 }
 
-Fixed Fixed::operator/(Fixed const &rhs) {
+Fixed Fixed::operator/(Fixed const &rhs) const {
     return Fixed(this->toFloat() / rhs.toFloat());
 }
 
@@ -120,7 +120,7 @@ Fixed &Fixed::min(Fixed &a, Fixed &b) {
 }
 
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
-    return a < b ? a : b;
+    return a.getRawBits() < b.getRawBits() ? a : b;
 }
 
 Fixed &Fixed::max(Fixed &a, Fixed &b) {
@@ -128,5 +128,5 @@ Fixed &Fixed::max(Fixed &a, Fixed &b) {
 }
 
 const Fixed &Fixed::max(const Fixed &a, const Fixed &b) {
-    return a > b ? a : b;
+    return a.getRawBits() > b.getRawBits() ? a : b;
 }
