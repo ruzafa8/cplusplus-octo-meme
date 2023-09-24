@@ -1,6 +1,6 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-void attacksTo(ScavTrap & a, ScavTrap & b) {
+void attacksTo(FragTrap & a, FragTrap & b) {
     a.attack(b.getName());
     b.takeDamage(a.getDamage());
 }
@@ -13,40 +13,40 @@ void endTestMessage(std::string name, bool result) {
     std::cout << "[ TEST ] - " << name << " " << (result ? "PASSED" : "FAILED") << std::endl << std::endl;
 }
 
-bool nameShouldBe(ScavTrap &c, std::string name) {
+bool nameShouldBe(FragTrap &c, std::string name) {
     return c.getName() == name;
 }
 
-bool damageShouldBe(ScavTrap &c, unsigned int damage) {
+bool damageShouldBe(FragTrap &c, unsigned int damage) {
     return c.getDamage() == damage;
 }
 
-bool lifeShouldBe(ScavTrap &c, unsigned int life) {
+bool lifeShouldBe(FragTrap &c, unsigned int life) {
     return c.getCurrentLife() == life;
 }
 
-bool energyShouldBe(ScavTrap &c, unsigned int energy) {
+bool energyShouldBe(FragTrap &c, unsigned int energy) {
     return c.getEnergy() == energy;
 }
 
-bool shouldBeDead(ScavTrap &c) {
+bool shouldBeDead(FragTrap &c) {
     return c.getCurrentLife() == 0;
 }
 
-bool testScapTrapDefaultValues() {
-    ScavTrap dummy("Dummy");
+bool testFragTrapDefaultValues() {
+    FragTrap dummy("Dummy");
     return nameShouldBe(dummy, "Dummy")
         && damageShouldBe(dummy, 20)
         && lifeShouldBe(dummy, 100)
         && energyShouldBe(dummy, 50);
 }
 
-bool testScapTrapCopyConstructor() {
+bool testFragTrapCopyConstructor() {
     bool        result;
-    ScavTrap dummy("Dummy");
+    FragTrap dummy("Dummy");
 
     dummy.setDamage(42);
-    ScavTrap copy(dummy);
+    FragTrap copy(dummy);
 
     result = nameShouldBe(copy, "Dummy")
         && damageShouldBe(copy, 42)
@@ -57,10 +57,10 @@ bool testScapTrapCopyConstructor() {
 
 bool testAssignmentOperator() {
     bool        result;
-    ScavTrap dummy("Dummy");
+    FragTrap dummy("Dummy");
 
     dummy.setDamage(42);
-    ScavTrap copy = dummy;
+    FragTrap copy = dummy;
 
     result = nameShouldBe(copy, "Dummy")
         && damageShouldBe(copy, 42)
@@ -69,19 +69,10 @@ bool testAssignmentOperator() {
     return result;
 }
 
-bool testGuardGate() {
-	ScavTrap dummy("Dummy");
-
-	dummy.guardGate();
+bool testHighFivesGuys() {
+	FragTrap dummy("Dummy");
+	dummy.highFivesGuys();
 	return true;
-}
-
-bool testAttack() {
-	ScavTrap dummy("Dummy");
-	ScavTrap dummy2("Dummy2");
-
-	attacksTo(dummy, dummy2);
-	return lifeShouldBe(dummy2, 80);
 }
 
 int main() {
@@ -89,12 +80,12 @@ int main() {
     bool result;
 
     startTestMessage(name);
-    result = testScapTrapDefaultValues();
+    result = testFragTrapDefaultValues();
     endTestMessage(name, result);
 
     name = "Test ScapTrap copy constructor";
     startTestMessage(name);
-    result = result && testScapTrapCopyConstructor();
+    result = result && testFragTrapCopyConstructor();
     endTestMessage(name, result);
 
     name = "Test ScapTrap assignment operator";
@@ -102,14 +93,9 @@ int main() {
     result = result && testAssignmentOperator();
     endTestMessage(name, result);
 
-	name = "Test ScapTrap guard gate";
+	name = "Test ScapTrap highFivesGuys";
 	startTestMessage(name);
-	result = result && testGuardGate();
-	endTestMessage(name, result);
-
-	name = "Test ScapTrap attack";
-	startTestMessage(name);
-	result = result && testAttack();
+	result = result && testHighFivesGuys();
 	endTestMessage(name, result);
 
     std::cout << std::endl << "[ TEST ] - " << (result ? "ALL TESTS PASSED" : "SOME TESTS FAILED") << std::endl;
