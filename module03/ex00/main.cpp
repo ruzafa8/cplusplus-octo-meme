@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-void attacksTo(ClapTrap const & a, ClapTrap const & b) {
+void attacksTo(ClapTrap & a, ClapTrap & b) {
     a.attack(b.getName());
     b.takeDamage(a.getDamage());
 }
@@ -10,7 +10,7 @@ void startTestMessage(std::string name) {
 }
 
 void endTestMessage(std::string name, bool result) {
-    std::cout << std::endl << "[ TEST ] - " << name << " " << result ? "PASSED" : "FAILED" << std::endl;
+    std::cout << "[ TEST ] - " << name << " " << (result ? "PASSED" : "FAILED") << std::endl << std::endl;
 }
 
 bool nameShouldBe(ClapTrap &c, std::string name) {
@@ -22,7 +22,7 @@ bool damageShouldBe(ClapTrap &c, unsigned int damage) {
 }
 
 bool lifeShouldBe(ClapTrap &c, unsigned int life) {
-    return c.getLife() == life;
+    return c.getCurrentLife() == life;
 }
 
 bool energyShouldBe(ClapTrap &c, unsigned int energy) {
@@ -30,7 +30,7 @@ bool energyShouldBe(ClapTrap &c, unsigned int energy) {
 }
 
 bool shouldBeDead(ClapTrap &c) {
-    return c.getLife() == 0;
+    return c.getCurrentLife() == 0;
 }
 
 bool testConstructor() {
@@ -53,9 +53,9 @@ bool testSetDamage() {
     startTestMessage(name);
     ClapTrap alex("aruzafa-");
 
-    result = damageShouldBe(dummy, 0);
-    dummy.setDamage(42);
-    result = result && damageShouldBe(dummy, 42);
+    result = damageShouldBe(alex, 0);
+    alex.setDamage(42);
+    result = result && damageShouldBe(alex, 42);
     endTestMessage(name, result);
     return result;
 }
@@ -109,7 +109,7 @@ bool testDamageUntilDeath() {
 
     result = lifeShouldBe(patxi, 10);
     int i = 0;
-    while (patxi.getLife() > 0 && result) {
+    while (patxi.getCurrentLife() > 0 && result) {
         patxi.takeDamage(1);
         result = result && lifeShouldBe(patxi, 10 - ++i);
     }
@@ -175,6 +175,7 @@ bool testAttackNoDamage() {
     result = result && lifeShouldBe(alex, 10);
     result = result && lifeShouldBe(jose, 10);
     endTestMessage(name, result);
+    return result;
 }
 
 bool testAttack() {
@@ -191,6 +192,7 @@ bool testAttack() {
     result = result && lifeShouldBe(alex, 10);
     result = result && lifeShouldBe(jose, 5);
     endTestMessage(name, result);
+    return result;
 }
 
 
@@ -204,6 +206,6 @@ int main() {
         && testDamageAndRepair()
         && testDamageAndRepairAfterDeath()
         && testAttack();
-    std::cout << std::endl << "[ TEST ] - " << (result ? "ALL TESTS PASSED" : "SOME TESTS FAILED") << std::endl;
+    std::cout<< std::endl << "[ TEST ] - " << (result ? "ALL TESTS PASSED" : "SOME TESTS FAILED") << std::endl;
     return 0;
 }
