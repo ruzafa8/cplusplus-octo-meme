@@ -1,29 +1,28 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap():
-    ClapTrap(),
-    hitPoints(100),
-    energyPoints(50),
-    attackDamage(20)
+ScavTrap::ScavTrap(): ClapTrap()
 {
     std::cout << "[constructor] ScavTrap empty created. :D" << std::endl;
+    ClapTrap::hitPoints = 100;
+    ClapTrap::energyPoints = 50;
+    ClapTrap::attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(std::string name):
-    ClapTrap(name),
-    hitPoints(100),
-    energyPoints(50),
-    attackDamage(20)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
     std::cout << "[constructor] ScavTrap " << name << " created. :D" << std::endl;
+    ClapTrap::hitPoints = 100;
+    ClapTrap::energyPoints = 50;
+    ClapTrap::attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &obj) {
+ScavTrap::ScavTrap(const ScavTrap &obj): ClapTrap(obj) {
+    std::cout << "[copy constructor] ScavTrap " << name << " created. :D" << std::endl;
     *this = obj;
 }
 
 ScavTrap::~ScavTrap() {
-    std::cout << "[destructor] ScavTrap " << name << " finished his life in your PC memory. );" << std::endl;
+    std::cout << "[destructor] ScavTrap " << ClapTrap::name << " finished his life in your PC memory. );" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &obj) {

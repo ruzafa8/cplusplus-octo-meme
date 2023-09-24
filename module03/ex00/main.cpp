@@ -6,7 +6,7 @@ void attacksTo(ClapTrap & a, ClapTrap & b) {
 }
 
 void startTestMessage(std::string name) {
-    std::cout << "[ TEST ] - " << name << std::endl;
+    std::cout << std::endl << std::endl << "[ TEST ] - " << name << std::endl;
 }
 
 void endTestMessage(std::string name, bool result) {
@@ -75,7 +75,7 @@ bool testDamageLife() {
 
 bool testDamageMoreThanLife() {
     bool        result;
-    std::string name = "Test damage function";
+    std::string name = "Test damage more than life";
     startTestMessage(name);
     ClapTrap patxi("patxi");
 
@@ -88,7 +88,7 @@ bool testDamageMoreThanLife() {
 
 bool testDamageAfterDeath() {
     bool        result;
-    std::string name = "Test damage function";
+    std::string name = "Test damage after death";
     startTestMessage(name);
     ClapTrap patxi("patxi");
 
@@ -103,7 +103,7 @@ bool testDamageAfterDeath() {
 
 bool testDamageUntilDeath() {
     bool        result;
-    std::string name = "Test damage function";
+    std::string name = "Test damage until death function";
     startTestMessage(name);
     ClapTrap patxi("patxi");
 
@@ -202,6 +202,7 @@ int main() {
         && testDamageLife()
         && testDamageMoreThanLife()
         && testDamageAfterDeath()
+        && testDamageUntilDeath()
         && testRepair()
         && testDamageAndRepair()
         && testDamageAndRepairAfterDeath()

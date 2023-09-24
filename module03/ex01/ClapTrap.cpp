@@ -19,6 +19,7 @@ ClapTrap::ClapTrap(std::string name):
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj) {
+    std::cout << "[copy constructor] ClapTrap " << name << " created. :D" << std::endl;
     *this = obj;
 }
 
@@ -36,7 +37,7 @@ ClapTrap &ClapTrap::operator=(ClapTrap const &obj) {
     return *this;
 }
 
-void attack(const std::string& target) {
+void ClapTrap::attack(const std::string& target) {
     std::cout << "[attack] ";
     if (this->canDoSomething()) {
         std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << this->attackDamage << " points of damage! >:D";
@@ -45,12 +46,12 @@ void attack(const std::string& target) {
     std::cout << std::endl;
 }
 
-void takeDamage(unsigned int amount) {
+void ClapTrap::takeDamage(unsigned int amount) {
     std::cout << "[damaged] ";
     if (amount == 0) {
         std::cout << "are you serious trying to make 0 damage to ClapTrap " << name << "?. HAHAHAHA";
     } else if (this->hitPoints == 0) {
-        std::cout << "this guy, ClapTrap " << name << ", has already passed out... Don't loose your time with'im!!! ._."
+        std::cout << "this guy, ClapTrap " << name << ", has already passed out... Don't loose your time with'im!!! ._.";
     } else {
         this->hitPoints = this->hitPoints > amount ? this->hitPoints - amount : 0;
         std::cout << "ClapTrap " << name << " has just received " << amount << " damage. :/" << std::endl;
@@ -63,18 +64,18 @@ void takeDamage(unsigned int amount) {
     std::cout << std::endl;
 }
 
-void beRepaired(unsigned int amount) {
-    cout << "[repairing] ";
+void ClapTrap::beRepaired(unsigned int amount) {
+    std::cout << "[repairing] ";
     if (this->canDoSomething()) {
         std::cout << "ClapTrap " << name << " repaired itself. >:P" << std::endl;
         this->hitPoints += amount;
         this->energyPoints--;
-        std::cout << "\tHe (or she, or it) has got now" << this->hitPoints << " life points. :P";
+        std::cout << "\tHe (or she, or it) has got now " << this->hitPoints << " life points. :P";
     }
     std::cout << std::endl;
 }
 
-bool canDoSomething() {
+bool ClapTrap::canDoSomething() {
     if (this->energyPoints == 0) {
         std::cout << "The pour ClapTrap " << name << " cannot do anything 'cause run out of energy points. :(";
         return false;
@@ -86,22 +87,22 @@ bool canDoSomething() {
     return true;
 }
 
-std::string getName() {
+std::string ClapTrap::getName() {
     return this->name;
 }
 
-unsigned int getCurrentLife() {
+unsigned int ClapTrap::getCurrentLife() {
     return this->hitPoints;
 }
 
-unsigned int getEnergy() {
+unsigned int ClapTrap::getEnergy() {
     return this->energyPoints;
 }
 
-unsigned int getDamage() {
+unsigned int ClapTrap::getDamage() {
     return this->attackDamage;
 }
 
-void setDamage(const unsigned int damage) {
+void ClapTrap::setDamage(const unsigned int damage) {
     this->attackDamage = damage;
 }
