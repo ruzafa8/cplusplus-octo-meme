@@ -15,8 +15,10 @@ class FragTrap: public virtual ClapTrap
 
         void        highFivesGuys(void);
 
-    private:
+    protected:
         FragTrap();
+		unsigned int hitPoints;
+		unsigned int attackDamage;
 };
 
 #endif

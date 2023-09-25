@@ -4,7 +4,7 @@ ScavTrap::ScavTrap(): ClapTrap()
 {
     std::cout << "[constructor] ScavTrap empty created. :D" << std::endl;
     ClapTrap::hitPoints = 100;
-    ClapTrap::energyPoints = 50;
+    energyPoints = 50;
     ClapTrap::attackDamage = 20;
 }
 
@@ -12,7 +12,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
     std::cout << "[constructor] ScavTrap " << name << " created. :D" << std::endl;
     ClapTrap::hitPoints = 100;
-    ClapTrap::energyPoints = 50;
+    energyPoints = 50;
     ClapTrap::attackDamage = 20;
 }
 

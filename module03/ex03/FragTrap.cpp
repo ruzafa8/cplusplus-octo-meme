@@ -4,17 +4,17 @@
 FragTrap::FragTrap(): ClapTrap()
 {
     std::cout << "[constructor] FragTrap empty created. :D" << std::endl;
-    ClapTrap::hitPoints = 100;
+    hitPoints = 100;
     ClapTrap::energyPoints = 100;
-    ClapTrap::attackDamage = 30;
+    attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
     std::cout << "[constructor] FragTrap " << name << " created. :D" << std::endl;
-    ClapTrap::hitPoints = 100;
+    hitPoints = 100;
     ClapTrap::energyPoints = 100;
-    ClapTrap::attackDamage = 30;
+    attackDamage = 30;
 }
 
 FragTrap::FragTrap(const FragTrap &obj): ClapTrap(obj) {

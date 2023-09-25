@@ -7,7 +7,6 @@
 class DiamondTrap: public ScavTrap, public FragTrap
 {
 	public:
-		DiamondTrap();
 		DiamondTrap(DiamondTrap const &other);
 		DiamondTrap(std::string name);
 		~DiamondTrap(void);
@@ -15,6 +14,12 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		DiamondTrap &operator=(DiamondTrap const &other);
 
 		void whoAmI(void);
+
+	    unsigned int getCurrentLife();
+        unsigned int getEnergy();
+
+        unsigned int getDamage();
+        void setDamage(const unsigned int damage);
 
 	private:
 		DiamondTrap();
