@@ -10,6 +10,10 @@ class AMateria {
 
 	public:
 		AMateria(std::string const & type);
+		AMateria(AMateria const &other);
+		virtual ~AMateria();
+
+		AMateria &operator=(AMateria const &other);
 
 		std::string const & getType() const; //Returns the materia type
 
