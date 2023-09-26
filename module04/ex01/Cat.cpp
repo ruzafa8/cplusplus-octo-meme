@@ -8,6 +8,7 @@ Cat::Cat() {
 
 Cat::Cat(Cat const &other): Animal(other) {
 	std::cout << "[constructor - Dog] copy constructor called" << std::endl;
+	brain = new Brain();
 	*this = other;
 }
 
@@ -23,6 +24,10 @@ Cat	&Cat::operator=(Cat const &other) {
 		*brain = *other.brain;
 	}
 	return (*this);
+}
+
+Brain	*Cat::getBrain(void) const {
+	return (brain);
 }
 
 void	Cat::makeSound(void) const {
