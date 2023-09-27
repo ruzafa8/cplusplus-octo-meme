@@ -33,7 +33,7 @@ Character	&Character::operator=(Character const &other) {
 			if (inventory[i] != NULL) {
 				delete inventory[i];
 			}
-			inventory[i] = other.inventory[i]->clone();
+			inventory[i] = other.inventory[i] != NULL ? other.inventory[i]->clone() : NULL;
 		}
 	}
 	return (*this);
@@ -63,4 +63,11 @@ void Character::use(int idx, ICharacter &target) {
 	if (idx >= 0 && idx < 4 && inventory[idx] != NULL) {
 		inventory[idx]->use(target);
 	}
+}
+
+AMateria *Character::getMateriaFromInventory(int idx) {
+	if (idx >= 0 && idx < 4) {
+		return (inventory[idx]);
+	}
+	return (NULL);
 }
