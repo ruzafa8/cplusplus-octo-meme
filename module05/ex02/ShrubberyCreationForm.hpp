@@ -1,19 +1,19 @@
-#ifndef SHRUBBERY_CREATION_FORM
-# define SHRUBBERY_CREATION_FORM
+#ifndef SHRUBBERY_CREATION_FORM_HPP
+# define SHRUBBERY_CREATION_FORM_HPP
 
 # include "AForm.hpp"
 
-class ShrubberyCreationForm: AForm {
+class ShrubberyCreationForm: public AForm {
 	private:
 		ShrubberyCreationForm();
-		void createFileAndPrintTree();
 	
 	public:
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(ShrubberyCreationForm const &other);
-		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
 		~ShrubberyCreationForm();
 
-		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
+		virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif

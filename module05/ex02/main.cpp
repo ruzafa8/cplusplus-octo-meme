@@ -1,6 +1,14 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main() {
-	return (0);
+	{
+		Bureaucrat b("Bureaucrat", 1);
+		std::cout << b << std::endl;
+		AForm *f = new ShrubberyCreationForm("home");
+		b.signForm(*f);
+		b.executeForm(*f);
+	}
+	return 0;
 }
