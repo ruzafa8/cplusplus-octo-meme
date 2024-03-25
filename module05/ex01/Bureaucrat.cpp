@@ -39,14 +39,14 @@ void Bureaucrat::decrementGrade()
 }
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &rhs) {
-    o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
+    o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
     return o;
 }
 
 void Bureaucrat::signForm(Form &form) const {
 	try {
 		form.beSigned(*this);
-		std::cout << *this << ". Signed ." << form;
+		std::cout << *this << ". Signed ." << form << std::endl;
 	} catch (std::exception &e)
 	{
 		std::cout << *this << ". Couldn't sign " << form << " because " << e.what() << ".";
