@@ -18,7 +18,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm(target, 72, 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
   AForm::execute(executor);
   std::cout << " *** DRILLING NOISE ***" << std::endl;
-  // get random number between 0 and 1
+  srand((unsigned int)time(NULL));
   int random = rand() % 2;
   if (random == 0) {
     std::cout << this->name << " has not been robotomized successfully" << std::endl;
