@@ -3,7 +3,7 @@
 Intern::Intern() {}
 
 Intern::Intern(Intern const &other) {
-  (void) other;
+  *this = other;
 }
 
 Intern::~Intern() {}
