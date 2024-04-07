@@ -19,11 +19,15 @@ class ScalarConverter {
     static void treatItLikeFloat(const std::string &value);
     static void treatItLikeDouble(const std::string &value);
 
-    static void printAll(char c, int i, float f, double d);
     static void printChar(char c);
     static void printInt(int i);
     static void printFloat(float f);
     static void printDouble(double d);
+
+    static void parseInt(const std::string &value);
+    static void parseFloat(const std::string &value);
+    static void parseDouble(const std::string &value);
+    static void parseAll(const std::string &value);
 
     enum Kind { CHAR, INT, FLOAT, DOUBLE };
     static Kind getKind(const std::string &value);

@@ -62,22 +62,34 @@ bool ScalarConverter::isValidNumber(const std::string &value, size_t pos) {
 void ScalarConverter::treatItLikeChar(const std::string &value) {
   char c = value[0];
   int i = static_cast<int>(c);
-  ScalarConverter::printAll(c, i, static_cast<float>(i), static_cast<double>(i));
+  float f = static_cast<float>(c);
+  double d = static_cast<double>(c);
+  ScalarConverter::printChar(c);
+  ScalarConverter::printInt(i);
+  ScalarConverter::printFloat(f);
+  ScalarConverter::printDouble(d);
 }
 
 void ScalarConverter::treatItLikeInt(const std::string &value) {
-  int i = std::atoi(value.c_str());
-  ScalarConverter::printAll(static_cast<char>(i), i, static_cast<float>(i), static_cast<double>(i));
+  int i = ScalarConverter::parseInt(value);
+  char c = static_cast<char>(i);
+  ScalarConverter::printChar(c);
+  ScalarConverter::parseAll(value);
 }
 
 void ScalarConverter::treatItLikeFloat(const std::string &value) {
   float f = static_cast<float>(std::atof(value.c_str()));
-  ScalarConverter::printAll(static_cast<char>(f), static_cast<int>(f), f, static_cast<double>(f));
+  ScalarConverter::printChar(c);
+  ScalarConverter::parseAll(value);
 }
 
 void ScalarConverter::treatItLikeDouble(const std::string &value) {
   double d = std::atof(value.c_str());
-  ScalarConverter::printAll(static_cast<char>(d), static_cast<int>(d), static_cast<float>(d), d);
+  char c = static_cast<char>(d);
+  int i = static_cast<int>(d);
+  float f = static_cast<float>(d);
+  ScalarConverter::printChar(c);
+  ScalarConverter::parseAll(value);
 }
 
 void ScalarConverter::printChar(char c) {
@@ -89,44 +101,56 @@ void ScalarConverter::printChar(char c) {
 }
 
 void ScalarConverter::printInt(int i) {
-  if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max()) {
-    std::cout << "int: impossible" << std::endl;
-  } else std::cout << "int: " << i << std::endl;
+  std::cout << "int: " << i << std::endl;
 }
 
 void ScalarConverter::printFloat(float f) {
-  if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max()) {
-    std::cout << "float: impossible" << std::endl;
-  } else {
-    std::stringstream ss;
-    ss << f;
-    std::string str = ss.str();
+  std::stringstream ss;
+  ss << f;
+  std::string str = ss.str();
 
-    if (str.find('.') == std::string::npos) {
-        str += ".0";
-    }
-    std::cout << "float: " << str << "f" << std::endl;
+  if (str.find('.') == std::string::npos) {
+      str += ".0";
   }
+  std::cout << "float: " << str << "f" << std::endl;
 }
 
 void ScalarConverter::printDouble(double d) {
-  if (d < std::numeric_limits<double>::min() || d > std::numeric_limits<double>::max()) {
-    std::cout << "double: impossible" << std::endl;
-  } else { 
-    std::stringstream ss;
-    ss << d;
-    std::string str = ss.str();
+  std::stringstream ss;
+  ss << d;
+  std::string str = ss.str();
 
-    if (str.find('.') == std::string::npos) {
-        str += ".0";
-    }
-    std::cout << "double: " << str << std::endl;
+  if (str.find('.') == std::string::npos) {
+      str += ".0";
   }
+  std::cout << "double: " << str << std::endl;
 }
 
-void ScalarConverter::printAll(char c, int i, float f, double d) {
-  ScalarConverter::printChar(c);
-  ScalarConverter::printInt(i);
-  ScalarConverter::printFloat(f);
-  ScalarConverter::printDouble(d);
+void ScalarConverter::parseAll(const std::string &value) {
+  // Missing char
+  ScalarConverter::parseInt(value);
+  ScalarConverter::parseFloat(value);
+  ScalarConverter::parseDouble(value);
 }
+
+void ScalarConverter::parseInt(const std::string &value) {
+  long res = std::strtol(value.c_str(), nullptr, 10);
+  if (res < std::numeric_limits<int>::min() || res > std::numeric_limits<int>::max())
+    std::cout << "int: impossible" << std::endl;
+  else printInt(static_cast<int>(res));
+}
+
+void ScalarConverter::parseFloat(const std::string &value) {
+  float res = std::strtof(value.c_str(), nullptr);
+  if (errno == ERANGE)
+    std::cout << "float: impossible" << std::endl;
+  else printFloat(res);
+}
+
+void ScalarConverter::parseDouble(const std::string &value) {
+  double res = std::strtod(value.c_str(), nullptr);
+  if (errno == ERANGE)
+    std::cout << "double: impossible" << std::endl;
+  else printDouble(res);
+}
+
