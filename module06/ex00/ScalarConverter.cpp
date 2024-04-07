@@ -12,13 +12,17 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
 void ScalarConverter::convert(const std::string &value) {
   // Missing:
   // - Nan, inf, -inf, nanf, inff, -inff
-  void (*treatItLike[4]) (const std::string &) = {
-    &ScalarConverter::treatItLikeChar, &ScalarConverter::treatItLikeInt, &ScalarConverter::treatItLikeFloat, &ScalarConverter::treatItLikeDouble
+  void (*treatItLike[5]) (const std::string &) = {
+    &ScalarConverter::treatItLikeChar, &ScalarConverter::treatItLikeInt,
+    &ScalarConverter::treatItLikeFloat, &ScalarConverter::treatItLikeDouble, &ScalarConverter::treatItSpecial
   };
-  Kind kind[4] = { ScalarConverter::CHAR, ScalarConverter::INT, ScalarConverter::FLOAT, ScalarConverter::DOUBLE };
+  Kind kind[5] = {
+    ScalarConverter::CHAR, ScalarConverter::INT, ScalarConverter::FLOAT,
+    ScalarConverter::DOUBLE, ScalarConverter::SPECIAL
+  };
   try {
     Kind type = ScalarConverter::getKind(value);
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
       if (type == kind[i])
         return (*treatItLike[i])(value);
   } catch (ScalarConverter::ImpossibleConversionException &e) {
@@ -30,6 +34,8 @@ void ScalarConverter::convert(const std::string &value) {
 }
 
 ScalarConverter::Kind ScalarConverter::getKind(const std::string &value) {
+  if (value == "nan" || value == "nanf" || value == "inf" || value == "-inf" || value == "inff" || value == "-inff")
+    return ScalarConverter::SPECIAL;
   if (value.length() == 3 && value[0] == '\'' && value[2] == '\'') {
     return ScalarConverter::CHAR;
   }
@@ -41,6 +47,8 @@ ScalarConverter::Kind ScalarConverter::getKind(const std::string &value) {
     if (value[i] == '.' && isDecimal) {
       throw ScalarConverter::ImpossibleConversionException();
     }
+    if (value[i] == '.' && (i == value.length() - 1 || value[i + 1] == 'f'))
+      throw ScalarConverter::ImpossibleConversionException();
     if (value[i] == '.' || value[i] == 'f') {
       isDecimal = true;
     }
@@ -109,6 +117,21 @@ void ScalarConverter::treatItLikeDouble(const std::string &value) {
   ScalarConverter::printInt(value);
   ScalarConverter::printFloat(value);
   ScalarConverter::printDouble(value);
+}
+
+void ScalarConverter::treatItSpecial(const std::string &value) {
+  std::cout << "char: impossible" <<std::endl;
+  std::cout << "int: impossible" << std::endl;
+  if (value == "nan" || value == "nanf") {
+    std::cout << "float: nanf" << std::endl;
+    std::cout << "double: nan" << std::endl;
+  } else if (value == "inf" || value == "inff") {
+    std::cout << "float: inff" << std::endl;
+    std::cout << "double: inf" << std::endl;
+  } else if (value == "-inf" || value == "-inff") {
+    std::cout << "float: -inff" << std::endl;
+    std::cout << "double: -inf" << std::endl;
+  }
 }
 
 void ScalarConverter::printChar(char c) {

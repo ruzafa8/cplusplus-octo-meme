@@ -18,6 +18,7 @@ class ScalarConverter {
     static void treatItLikeInt(const std::string &value);
     static void treatItLikeFloat(const std::string &value);
     static void treatItLikeDouble(const std::string &value);
+	static void treatItSpecial(const std::string &value);
 
     static void printChar(char c);
     static void printInt(const std::string &value);
@@ -28,7 +29,7 @@ class ScalarConverter {
     static float	parseFloat(const std::string &value);
     static double	parseDouble(const std::string &value);
 
-    enum Kind { CHAR, INT, FLOAT, DOUBLE };
+    enum Kind { CHAR, INT, FLOAT, DOUBLE, SPECIAL };
     static Kind getKind(const std::string &value);
 
     class ImpossibleConversionException : public std::exception {
