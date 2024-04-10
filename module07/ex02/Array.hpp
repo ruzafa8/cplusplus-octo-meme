@@ -1,6 +1,8 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include <cstdlib>
+
 template<typename T>
 class Array {
 	private:
@@ -31,8 +33,17 @@ class Array {
 		}
 
 		T &operator[](size_t i) {
+			if (i >= this->len)
+				throw IndexOutOfBoundException();
 			return this->array[i];
 		}
+
+		class IndexOutOfBoundException: public std::exception {
+			public:
+				virtual const char *what() const throw() {
+					return "Index out of bound";
+				}
+		};
 };
 
 #endif
