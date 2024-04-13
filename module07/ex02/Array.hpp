@@ -12,7 +12,7 @@ class Array {
 	public:
 		Array(): array(new T[0]), len(0) {}
 		Array(int n): array(new T[n]), len(n) {}
-		Array(const Array &other) {
+		Array(const Array &other): array(new T[other.len]), len(other.len) {
 			*this = other;
 		}
 		~Array() {
