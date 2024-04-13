@@ -1,40 +1,38 @@
 #include "Span.hpp"
 
-Span::Span(unsigned int n): _n(n), _array(new int[n]), _size(0) {}
+Span::Span(unsigned int n): _vector(new std::vector<int>()) {
+	_vector->reserve(n);
+}
 
-Span::Span(Span const &other) {
-  *this = other;
+Span::Span(Span const &other): _vector(new std::vector<int>()) {
+	_vector->reserve(other._vector->capacity());
+  	*this = other;
 }
 
 Span::~Span() {
-  delete []_array;
+	delete _vector;
 }
 
 Span &Span::operator=(Span const &other) {
   if (this != &other) {
-    delete []_array;
-    _n = other._n;
-    _array = new int[_n];
-    _size = other._size;
-    for (unsigned int i = 0; i < _size; i++)
-      _array[i] = other._array[i];
+	*_vector = *other._vector;
   }
   return *this;
 }
 
 void Span::addNumber(int n) {
-  if (_size >= _n)
+  if (_vector->size() >= _vector->capacity())
     throw ArrayFullException();
-  _array[_size++] = n;
+  _vector->push_back(n);
 }
 
 int Span::shortestSpan() {
-  if (_size <= 1)
+  if (_vector->size() <= 1)
     throw NotEnoughElementsException();
-  std::sort(_array, _array + _size);
-  int min = _array[1] - _array[0];
-  for (unsigned int i = 2; i < _size; i++) {
-    int diff = _array[i] - _array[i - 1];
+  std::sort(_vector->begin(), _vector->end());
+  int min = _vector->at(1) - _vector->at(0);
+  for (unsigned int i = 2; i < _vector->size(); i++) {
+    int diff = _vector->at(i) - _vector->at(i - 1);
     if (diff < min)
       min = diff;
   }
@@ -42,8 +40,8 @@ int Span::shortestSpan() {
 }
 
 int Span::longestSpan() {
-  if (_size <= 1)
+  if (_vector->size() <= 1)
     throw NotEnoughElementsException();
-  std::sort(_array, _array + _size);
-  return _array[_size - 1] - _array[0];
+  std::sort(_vector->begin(), _vector->end());
+  return _vector->back() - _vector->front();
 }

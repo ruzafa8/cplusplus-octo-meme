@@ -2,13 +2,12 @@
 # define SPAN_HPP
 
 # include <exception>
+# include <vector>
 # include <algorithm>
 
 class Span {
   private:
-    unsigned int  _n;
-    int           *_array;
-    unsigned int  _size;
+    std::vector<int>	*_vector;
 
   public:
     Span(unsigned int n);
@@ -21,10 +20,9 @@ class Span {
   
     template<typename T>
     void addNumber(T begin, T end) {
-      if (_size + std::distance(begin, end) > _n)
-        throw ArrayFullException();
-      for (T it = begin; it != end; it++)
-        _array[_size++] = *it;
+		if (_vector->size() >= _vector->capacity())
+			throw ArrayFullException();
+    	std::advance(_vector->end(), begin, end);
     }
 
     int shortestSpan();
