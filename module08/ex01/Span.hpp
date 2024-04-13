@@ -22,7 +22,7 @@ class Span {
     void addNumber(T begin, T end) {
 		if (_vector->size() >= _vector->capacity())
 			throw ArrayFullException();
-    	std::advance(_vector->end(), begin, end);
+		_vector->insert(_vector->end(), begin, end);
     }
 
     int shortestSpan();

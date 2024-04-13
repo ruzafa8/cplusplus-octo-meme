@@ -2,12 +2,13 @@
 #include "Span.hpp"
 
 Span *createSpan(unsigned int n) {
-  Span *sp = new Span(n);
-  srand(time(NULL));
+	std::vector<int> randomNumbers(n);
+	Span *sp = new Span(n);
 
-  for (unsigned int i = 0; i < n; i++)
-    sp->addNumber(rand());
-  return sp;
+	srand(time(NULL));
+	std::generate(randomNumbers.begin(), randomNumbers.end(), std::rand);
+	sp->addNumber(randomNumbers.begin(), randomNumbers.end());
+	return sp;
 }
 
 int main() {
