@@ -1,4 +1,4 @@
-CC = g++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 RM = rm -f

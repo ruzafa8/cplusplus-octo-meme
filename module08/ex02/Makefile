@@ -2,7 +2,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 RM = rm -f
-NAME = array
+NAME = mutant
 SRCS = main.cpp
 
 all: ${NAME}
