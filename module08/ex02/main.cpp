@@ -9,9 +9,7 @@ int main() {
     list.push_back(17);
 
     std::cout << list.back() << std::endl;
-    
     list.pop_back();
-    
     std::cout << list.size() << std::endl;
     
     list.push_back(3);
@@ -23,10 +21,7 @@ int main() {
     std::list<int>::iterator itList = list.begin();
     std::list<int>::iterator iteList = list.end();
     
-    ++itList;
-    --itList;
-    while (itList != iteList)
-    {
+    while (itList != iteList) {
         std::cout << *itList << std::endl;
         ++itList;
     }
@@ -54,10 +49,7 @@ int main() {
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
     
-    // ++it;
-    // --it;
-    while (it != ite)
-    {
+    while (it != ite) {
         std::cout << *it << std::endl;
         ++it;
     }
