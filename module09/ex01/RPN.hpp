@@ -27,9 +27,16 @@ class RPN {
 		class InvalidOperatorException: public std::exception {
 			public:
 				virtual const char *what() const throw() {
-				return "The operator is not valid";
+					return "Error";
 				}
 		};	
+
+		class EmptyStackException: public std::exception {
+			public:
+				virtual const char *what() const throw() {
+					return "The stack is empty";
+				}
+		};
 };
 
 #endif

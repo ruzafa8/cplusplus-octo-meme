@@ -19,16 +19,14 @@ RPN &RPN::operator=(const RPN &other) {
 bool RPN::validInput(const std::string &input) {
 	std::string::const_iterator it = input.begin();
 while (it != input.end()) {
-	if (!isnumber(*it) && *it != '+' && *it != '-'
+	if (!isdigit(*it) && *it != '+' && *it != '-'
 				&& *it != '/' && *it != '*' && *it != ' ') {
 			return false;
 		}
-		std::cout << "si" << std::endl;
 		it++;
 	}
 	return true;
 }
-
 
 void RPN::insertData(const std::string &input) {
 	if (!validInput(input))
@@ -36,26 +34,31 @@ void RPN::insertData(const std::string &input) {
 
 	std::string::const_iterator it = input.begin();
 	while (it != input.end()) {
-		if (isnumber(*it))
+		if (isdigit(*it))
 			this->tokens.push(*it - '0');
-		else executeOperator(*it);
+		else if (*it != ' ')
+			executeOperator(*it);
 		it++;
 	}
 }
 
 void RPN::executeOperator(char op) {
 	int res;
+	int first = this->pop();
+	int second = this->pop();
 	switch (op) {
-		case '+': res = this->pop() + this->pop(); break;
-		case '-': res = this->pop() - this->pop(); break;
-		case '*': res = this->pop() * this->pop(); break;
-		case '/': res = this->pop() / this->pop(); break;
+		case '+': res = second + first; break;
+		case '-': res = second - first; break;
+		case '*': res = second * first; break;
+		case '/': res = second / first; break;
 		default: throw InvalidOperatorException();
 	}
 	this->tokens.push(res);
 }
 
 int RPN::pop() {
+	if (this->tokens.empty())
+		throw EmptyStackException();
 	int res = this->tokens.top();
 	this->tokens.pop();
 	return res;
